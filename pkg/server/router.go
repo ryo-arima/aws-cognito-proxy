@@ -10,25 +10,25 @@ import (
 
 func InitRouter(conf config.BaseConfig) *gin.Engine {
 	
-	usersRepository := repository.NewUsersRepository(conf)
-	usersControllerForPublic := controller.NewUsersControllerForPublic(usersRepository)
-	usersControllerForInternal := controller.NewUsersControllerForInternal(usersRepository)
-	usersControllerForPrivate := controller.NewUsersControllerForPrivate(usersRepository)
+	userRepository := repository.NewUserRepository(conf)
+	userControllerForPublic := controller.NewUserControllerForPublic(userRepository)
+	userControllerForInternal := controller.NewUserControllerForInternal(userRepository)
+	userControllerForPrivate := controller.NewUserControllerForPrivate(userRepository)
 	
-	groupsRepository := repository.NewGroupsRepository(conf)
-	groupsControllerForPublic := controller.NewGroupsControllerForPublic(groupsRepository)
-	groupsControllerForInternal := controller.NewGroupsControllerForInternal(groupsRepository)
-	groupsControllerForPrivate := controller.NewGroupsControllerForPrivate(groupsRepository)
+	groupRepository := repository.NewGroupRepository(conf)
+	groupControllerForPublic := controller.NewGroupControllerForPublic(groupRepository)
+	groupControllerForInternal := controller.NewGroupControllerForInternal(groupRepository)
+	groupControllerForPrivate := controller.NewGroupControllerForPrivate(groupRepository)
 	
-	rolesRepository := repository.NewRolesRepository(conf)
-	rolesControllerForPublic := controller.NewRolesControllerForPublic(rolesRepository)
-	rolesControllerForInternal := controller.NewRolesControllerForInternal(rolesRepository)
-	rolesControllerForPrivate := controller.NewRolesControllerForPrivate(rolesRepository)
+	roleRepository := repository.NewRoleRepository(conf)
+	roleControllerForPublic := controller.NewRoleControllerForPublic(roleRepository)
+	roleControllerForInternal := controller.NewRoleControllerForInternal(roleRepository)
+	roleControllerForPrivate := controller.NewRoleControllerForPrivate(roleRepository)
 	
-	policiesRepository := repository.NewPoliciesRepository(conf)
-	policiesControllerForPublic := controller.NewPoliciesControllerForPublic(policiesRepository)
-	policiesControllerForInternal := controller.NewPoliciesControllerForInternal(policiesRepository)
-	policiesControllerForPrivate := controller.NewPoliciesControllerForPrivate(policiesRepository)
+	policyRepository := repository.NewPolicyRepository(conf)
+	policyControllerForPublic := controller.NewPolicyControllerForPublic(policyRepository)
+	policyControllerForInternal := controller.NewPolicyControllerForInternal(policyRepository)
+	policyControllerForPrivate := controller.NewPolicyControllerForPrivate(policyRepository)
 	
 	
     router := gin.Default()
@@ -41,49 +41,49 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.Use(middleware.ForPrivate(conf))
 
 	
-	//users
-	publicAPI.GET("/userss", usersControllerForPublic.GetUserss)
-	internalAPI.GET("/userss", usersControllerForInternal.GetUserss)
-	internalAPI.POST("/users", usersControllerForInternal.CreateUsers)
-	internalAPI.PUT("/users", usersControllerForInternal.UpdateUsers)
-	internalAPI.DELETE("/users", usersControllerForInternal.DeleteUsers)
-	privateAPI.GET("/userss", usersControllerForPrivate.GetUserss)
-	privateAPI.POST("/users", usersControllerForPrivate.CreateUsers)
-	privateAPI.PUT("/users", usersControllerForPrivate.UpdateUsers)
-	privateAPI.DELETE("/users", usersControllerForPrivate.DeleteUsers)
+	//user
+	publicAPI.GET("/users", userControllerForPublic.GetUsers)
+	internalAPI.GET("/users", userControllerForInternal.GetUsers)
+	internalAPI.POST("/user", userControllerForInternal.CreateUser)
+	internalAPI.PUT("/user", userControllerForInternal.UpdateUser)
+	internalAPI.DELETE("/user", userControllerForInternal.DeleteUser)
+	privateAPI.GET("/users", userControllerForPrivate.GetUsers)
+	privateAPI.POST("/user", userControllerForPrivate.CreateUser)
+	privateAPI.PUT("/user", userControllerForPrivate.UpdateUser)
+	privateAPI.DELETE("/user", userControllerForPrivate.DeleteUser)
 	
-	//groups
-	publicAPI.GET("/groupss", groupsControllerForPublic.GetGroupss)
-	internalAPI.GET("/groupss", groupsControllerForInternal.GetGroupss)
-	internalAPI.POST("/groups", groupsControllerForInternal.CreateGroups)
-	internalAPI.PUT("/groups", groupsControllerForInternal.UpdateGroups)
-	internalAPI.DELETE("/groups", groupsControllerForInternal.DeleteGroups)
-	privateAPI.GET("/groupss", groupsControllerForPrivate.GetGroupss)
-	privateAPI.POST("/groups", groupsControllerForPrivate.CreateGroups)
-	privateAPI.PUT("/groups", groupsControllerForPrivate.UpdateGroups)
-	privateAPI.DELETE("/groups", groupsControllerForPrivate.DeleteGroups)
+	//group
+	publicAPI.GET("/groups", groupControllerForPublic.GetGroups)
+	internalAPI.GET("/groups", groupControllerForInternal.GetGroups)
+	internalAPI.POST("/group", groupControllerForInternal.CreateGroup)
+	internalAPI.PUT("/group", groupControllerForInternal.UpdateGroup)
+	internalAPI.DELETE("/group", groupControllerForInternal.DeleteGroup)
+	privateAPI.GET("/groups", groupControllerForPrivate.GetGroups)
+	privateAPI.POST("/group", groupControllerForPrivate.CreateGroup)
+	privateAPI.PUT("/group", groupControllerForPrivate.UpdateGroup)
+	privateAPI.DELETE("/group", groupControllerForPrivate.DeleteGroup)
 	
-	//roles
-	publicAPI.GET("/roless", rolesControllerForPublic.GetRoless)
-	internalAPI.GET("/roless", rolesControllerForInternal.GetRoless)
-	internalAPI.POST("/roles", rolesControllerForInternal.CreateRoles)
-	internalAPI.PUT("/roles", rolesControllerForInternal.UpdateRoles)
-	internalAPI.DELETE("/roles", rolesControllerForInternal.DeleteRoles)
-	privateAPI.GET("/roless", rolesControllerForPrivate.GetRoless)
-	privateAPI.POST("/roles", rolesControllerForPrivate.CreateRoles)
-	privateAPI.PUT("/roles", rolesControllerForPrivate.UpdateRoles)
-	privateAPI.DELETE("/roles", rolesControllerForPrivate.DeleteRoles)
+	//role
+	publicAPI.GET("/roles", roleControllerForPublic.GetRoles)
+	internalAPI.GET("/roles", roleControllerForInternal.GetRoles)
+	internalAPI.POST("/role", roleControllerForInternal.CreateRole)
+	internalAPI.PUT("/role", roleControllerForInternal.UpdateRole)
+	internalAPI.DELETE("/role", roleControllerForInternal.DeleteRole)
+	privateAPI.GET("/roles", roleControllerForPrivate.GetRoles)
+	privateAPI.POST("/role", roleControllerForPrivate.CreateRole)
+	privateAPI.PUT("/role", roleControllerForPrivate.UpdateRole)
+	privateAPI.DELETE("/role", roleControllerForPrivate.DeleteRole)
 	
-	//policies
-	publicAPI.GET("/policiess", policiesControllerForPublic.GetPoliciess)
-	internalAPI.GET("/policiess", policiesControllerForInternal.GetPoliciess)
-	internalAPI.POST("/policies", policiesControllerForInternal.CreatePolicies)
-	internalAPI.PUT("/policies", policiesControllerForInternal.UpdatePolicies)
-	internalAPI.DELETE("/policies", policiesControllerForInternal.DeletePolicies)
-	privateAPI.GET("/policiess", policiesControllerForPrivate.GetPoliciess)
-	privateAPI.POST("/policies", policiesControllerForPrivate.CreatePolicies)
-	privateAPI.PUT("/policies", policiesControllerForPrivate.UpdatePolicies)
-	privateAPI.DELETE("/policies", policiesControllerForPrivate.DeletePolicies)
+	//policy
+	publicAPI.GET("/policys", policyControllerForPublic.GetPolicys)
+	internalAPI.GET("/policys", policyControllerForInternal.GetPolicys)
+	internalAPI.POST("/policy", policyControllerForInternal.CreatePolicy)
+	internalAPI.PUT("/policy", policyControllerForInternal.UpdatePolicy)
+	internalAPI.DELETE("/policy", policyControllerForInternal.DeletePolicy)
+	privateAPI.GET("/policys", policyControllerForPrivate.GetPolicys)
+	privateAPI.POST("/policy", policyControllerForPrivate.CreatePolicy)
+	privateAPI.PUT("/policy", policyControllerForPrivate.UpdatePolicy)
+	privateAPI.DELETE("/policy", policyControllerForPrivate.DeletePolicy)
 	
 
 	return router

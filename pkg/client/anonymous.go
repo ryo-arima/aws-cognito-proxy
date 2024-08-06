@@ -37,14 +37,14 @@ func ClientForAnonymousUser(conf config.BaseConfig) {
 	baseCmdForAnonymousUser := InitBaseCmdForAnonymousUser()
 
 	//get
-	getUsersCmdForAnonymousUser := controller.InitGetUsersCmdForAnonymousUser(conf)
-	baseCmdForAnonymousUser.Get.AddCommand(getUsersCmdForAnonymousUser)
-	getGroupsCmdForAnonymousUser := controller.InitGetGroupsCmdForAnonymousUser(conf)
-	baseCmdForAnonymousUser.Get.AddCommand(getGroupsCmdForAnonymousUser)
-	getRolesCmdForAnonymousUser := controller.InitGetRolesCmdForAnonymousUser(conf)
-	baseCmdForAnonymousUser.Get.AddCommand(getRolesCmdForAnonymousUser)
-	getPoliciesCmdForAnonymousUser := controller.InitGetPoliciesCmdForAnonymousUser(conf)
-	baseCmdForAnonymousUser.Get.AddCommand(getPoliciesCmdForAnonymousUser)
+	getUserCmdForAnonymousUser := controller.InitGetUserCmdForAnonymousUser(conf)
+	baseCmdForAnonymousUser.Get.AddCommand(getUserCmdForAnonymousUser)
+	getGroupCmdForAnonymousUser := controller.InitGetGroupCmdForAnonymousUser(conf)
+	baseCmdForAnonymousUser.Get.AddCommand(getGroupCmdForAnonymousUser)
+	getRoleCmdForAnonymousUser := controller.InitGetRoleCmdForAnonymousUser(conf)
+	baseCmdForAnonymousUser.Get.AddCommand(getRoleCmdForAnonymousUser)
+	getPolicyCmdForAnonymousUser := controller.InitGetPolicyCmdForAnonymousUser(conf)
+	baseCmdForAnonymousUser.Get.AddCommand(getPolicyCmdForAnonymousUser)
 	rootCmdForAnonymousUser.AddCommand(baseCmdForAnonymousUser.Get)
 	
 	rootCmdForAnonymousUser.Execute()
